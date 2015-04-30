@@ -12,7 +12,7 @@ License: GPLv2 or later
 require_once( 'rubrieken/main.php' );
 require_once( 'tarieven/main.php'  );
 require_once( 'leden/main.php'     );
-
+require_once( 'pdf/main.php'       );
 
 /*** Basisinstellingen van de plugin. Options zijn een soort constanten in Wordpress ***/
 // TODO uitzoeken hoe deze options in een instellingenpagina van de plugin kunnen worden bewerkt
@@ -35,6 +35,7 @@ function dnh_on_admin_menu() {
 	dnh_rubrieken_on_admin_menu(); // Zelf bedacht. PHP functie van het sub-onderdeel dat menu-items aan het menu kan toevoegen.
 	dnh_tarieven_on_admin_menu();  // Zelf bedacht. PHP functie van het sub-onderdeel dat menu-items aan het menu kan toevoegen.
 	dnh_leden_on_admin_menu();	   // Zelf bedacht. PHP functie van het sub-onderdeel dat menu-items aan het menu kan toevoegen.
+	dnh_pdf_on_admin_menu();
 }
 
 /************** ADMIN NOTICES *****************************
