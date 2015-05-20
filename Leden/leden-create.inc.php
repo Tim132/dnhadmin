@@ -2,7 +2,7 @@
 /*******************************************************************************************************
 Plugin: DNHAdmin
 Script: leden-create.inc.php
-Doel  : "Template" voor het toevoegen van een nieuw Tarief
+Doel  : "Template" voor het toevoegen van een nieuw lid
 Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
@@ -25,12 +25,12 @@ Auteur: BugSlayer
 		<table class="form-table">
 			<tbody>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="naam">naam <span class="description">(verplicht)</span></label></th>
-					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
+					<th scope="row"><label for="Naam">Naam <span class="description">(verplicht)</span></label></th>
+					<td><input name="Naam" type="text" id="Naam" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="adres">adres <span class="description">(verplicht)</span></label></th>
-					<td><input name="adres_lid" type="text" id="adres_lid" value="" aria-required="true"></td>
+					<th scope="row"><label for="Adres">Adres <span class="description">(verplicht)</span></label></th>
+					<td><input name="Adres" type="text" id="Adres" value="" aria-required="true"></td>
 				</tr>
 				
 			</tbody>

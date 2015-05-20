@@ -130,8 +130,8 @@ class DNHleden_List_Table extends WP_List_Table {
 	function column_naam($item) {
         //Build row actions
         $actions = array(
-            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->Naam, __( 'Edit' ) ),
-            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_delete',$this->_args['singular'], $item->Naam, __( 'Delete' ) ),
+            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->user_ID, __( 'Edit' ) ),
+            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_delete',$this->_args['singular'], $item->user_ID, __( 'Delete' ) ),
         );
         
         //Return the title contents

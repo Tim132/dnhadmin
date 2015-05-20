@@ -23,7 +23,7 @@ if ('delete'===$myListTable->current_action()) {
 	<h2>leden
 		<?php 
 		if ( current_user_can( 'manage_options' ) ) 
-			echo ' <a href="' . admin_url('admin.php?page=dnh_leden_create') . '" class="add-new-h2">Nieuw tarief</a>';
+			echo ' <a href="' . admin_url('admin.php?page=dnh_leden_create') . '" class="add-new-h2">Nieuw lid</a>';
 		if ( ! empty( $_REQUEST['s'] ) )
 			printf( ' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() );
 		?>

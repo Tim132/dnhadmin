@@ -27,11 +27,11 @@ function dnh_process_lid() {
   $error_message = Array();
   $data = array();
 
-  if ( !isset( $_POST['naam'] ) ) {
-    $error_message[] = 'naam veld is niet meegestuurd';
+  if ( !isset( $_POST['Naam'] ) ) {
+    $error_message[] = 'Naam veld is niet meegestuurd';
   } 
-    if ( !isset( $_POST['adres'] ) ) {
-    $error_message[] = 'adres veld is niet meegestuurd';
+    if ( !isset( $_POST['Adres'] ) ) {
+    $error_message[] = 'Adres veld is niet meegestuurd';
   } 
   
 
@@ -76,22 +76,22 @@ function dnh_process_delete_leden() {
 
   // Ophalen en valideren van de data
   // Alle gemarkeerde jaren in een array stoppen
-  $jaren = Array();
-  if (isset($_POST['jaar'])) {
-    $value = $_POST['jaar'];
+  $IDs = Array();
+  if (isset($_POST['user_ID'])) {
+    $value = $_POST['user_ID'];
     if (is_array($value)) {
       foreach ($value as $val) {
-        $jaren[] = sanitize_text_field($val);
+        $IDs[] = sanitize_text_field($val);
       }
     } else {
-      $jaren[] = sanitize_text_field($value);
+      $IDs[] = sanitize_text_field($value);
     }
   } else {
-    $error_message[] = 'Er zijn geen jaren meegestuurd';
+    $error_message[] = 'Er is geen ID meegestuurd';
   }
   foreach ($jaren as $jaar) {
     if (!is_numeric($jaar)) {
-      $error_message[] = 'Rubriek $jaar is niet geldig';
+      $error_message[] = 'ID $user_ID is niet geldig';
     }
   }
 
@@ -103,8 +103,8 @@ function dnh_process_delete_leden() {
     global $wpdb; //This is used only if making any database queries
         // verwijderen leden
     $updates = 0;
-    foreach ($jaren as $jaar) {
-      $update = $wpdb->delete( 'DNH_lid', Array( 'Jaar' => $jaar ) );
+    foreach ($IDs as $user_ID) {
+      $update = $wpdb->delete( 'DNH_lid', Array( 'user_ID' => $user_ID ) );
       if ($update === FALSE) {
         $qvars['dnh_ntc'] = 'error';
         $qvars['dnh_ntm'] = urlencode( __( 'Could not execute query: ' ) . $wpdb->last_error );
