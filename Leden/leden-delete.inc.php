@@ -8,8 +8,8 @@ Auteur: BugSlayer
 
 // Alle gemarkeerde leden in een array stoppen
 $leden = Array();
-if (isset($_GET['lid'])) {
-	$value = $_GET['lid'];
+if (isset($_GET['user_ID'])) {
+	$value = $_GET['user_ID'];
 	if (is_array($value)) {
 		foreach ($value as $val) {
 			$leden[] = sanitize_text_field($val);
@@ -22,16 +22,16 @@ if (isset($_GET['lid'])) {
 // Rubriek-informatie ophalen
 global $wpdb;
 $ids = join(',',$leden);  
-$myrows = $wpdb->get_results("SELECT * FROM dnh_tarief WHERE Jaar IN ($ids)");
+$myrows = $wpdb->get_results("SELECT * FROM dnh_lid WHERE ID IN ($ids)");
 
 ?>
 
 <div class="wrap">
-	<h2>Verwijder rubriek</h2>
+	<h2>Verwijder Leden</h2>
 	<p>Je hebt de volgende leden gemarkeerd om te verwijderen:</p>
 	<ul> <?php
 		foreach ($myrows as $row) {
-			printf("<li>%s</li>",$row->Jaar);
+			printf("<li>%s</li>",$row->Naam);
 		}
 	?></ul>
 	<form method="post" action="admin-post.php"> 
@@ -43,7 +43,7 @@ $myrows = $wpdb->get_results("SELECT * FROM dnh_tarief WHERE Jaar IN ($ids)");
 		<?php
 			//Hier hidden array-fields maken voor alle geselecteerde leden
 			foreach($leden as $rubriek) {
-				printf('<input type="hidden" name="jaar[]" value="%s" />', $rubriek);
+				printf('<input type="hidden" name="ID[]" value="%s" />', $rubriek);
 			}
 		?>
 

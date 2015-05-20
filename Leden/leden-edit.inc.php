@@ -23,12 +23,12 @@ Auteur: BugSlayer
 		<table class="form-table">
 			<tbody>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="jaar">naam <span class="description">(verplicht)</span></label></th>
-					<td><input name="jaar" type="text" id="jaar" value="<?php echo $item->naam ?>" aria-required="true"></td>
+					<th scope="row"><label for="Naam">Naam <span class="description">(verplicht)</span></label></th>
+					<td><input name="Naam" type="text" id="Naam" value="<?php echo $item->Naam ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="contributie_leden">adres<span class="description">(verplicht)</span></label></th>
-					<td><input name="contributie_leden" type="text" id="contributie_leden" value="<?php echo $item->adres ?>" aria-required="true"></td>
+					<th scope="row"><label for="Adres">Adres<span class="description">(verplicht)</span></label></th>
+					<td><input name="Adres" type="text" id="Adres" value="<?php echo $item->Adres ?>" aria-required="true"></td>
 				</tr>
 				
 			</tbody>

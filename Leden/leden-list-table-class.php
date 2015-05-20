@@ -82,11 +82,8 @@ class DNHleden_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'                   => '<input type="checkbox" />', //Render a checkbox instead of text
-            'jaar'                 => 'Jaar',
-            'contributie_leden'    => 'Contributie leden',
-            'energietoeslag_leden' => 'Energietoeslag leden',
-            'liggeld_leden'        => 'Liggeld leden',
-            'liggeld_passanten'    => 'Liggeld passanten'
+            'naam'                 => 'Naam',
+            'Adres'				   => 'Adres',
         );
         return $columns;
     }
@@ -107,7 +104,6 @@ class DNHleden_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'jaar'     => array('jaar',true)
         );
         return $sortable_columns;
     }
@@ -127,40 +123,29 @@ class DNHleden_List_Table extends WP_List_Table {
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-            /*$2%s*/ $item->Jaar                //The value of the checkbox should be the record's id
+            /*$2%s*/ $item->user_ID             //The value of the checkbox should be the record's id
         );
     }
 	
-	function column_jaar($item) {
+	function column_naam($item) {
         //Build row actions
         $actions = array(
-            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->Jaar, __( 'Edit' ) ),
-            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_leden_delete',$this->_args['singular'], $item->Jaar, __( 'Delete' ) ),
+            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->Naam, __( 'Edit' ) ),
+            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_delete',$this->_args['singular'], $item->Naam, __( 'Delete' ) ),
         );
         
         //Return the title contents
         return sprintf('%1$s %2$s',
-            /*$1%s*/ $item->Jaar,
+            /*$1%s*/ $item->Naam,
             /*$2%s*/ $this->row_actions($actions)
         );
 	}
 	
-	function column_contributie_leden($item) {
-		return "€".$item->Contributie_leden;
+	function column_adres($item) {
+		return $item->Adres;
 	}
 	
-    function column_energietoeslag_leden($item) {
-        return "€".$item->Energietoeslag_leden;
-    }
-    
-    function column_liggeld_leden($item) {
-        return "€".$item->Liggeld_leden;
-    }
-    
-    function column_liggeld_passanten($item) {
-        return "€".$item->Liggeld_passanten;
-    }
-    
+	
      
    /** ************************************************************************
  	 * Functie die Wordpress aanroept als de functie voor een bepaalde kolom
