@@ -24,32 +24,34 @@ function dnh_process_lid() {
   check_admin_referer( 'dnh_verify' );
 
   // Ophalen en valideren van de data
-  $error_message = Array();
+  $error_message = "";
   $data = array();
-
-  if ( !isset( $_POST['Naam'] ) ) {
-    $error_message[] = 'Naam veld is niet meegestuurd';
-  } 
-    if ( !isset( $_POST['Adres'] ) ) {
-    $error_message[] = 'Adres veld is niet meegestuurd';
-  } 
+  if ( isset( $_POST['Naam'] ) )
+  {
+    $data['Naam'] = sanitize_text_field( $_POST['Naam'] );
+  } else {
+    $error_message .= 'naam veld is niet meegestuurd';
+  }
+  if ( isset( $_POST['Adres'] ) )
+  {
+    $data['Adres'] = sanitize_text_field( $_POST['Adres'] );
+	} else {
+    $error_message .= 'Adres veld is niet meegestuurd';
+  }
   
-
-  $qvars = array( 'page' => 'dnh_leden');
-  if(count($error_message) > 0) {
-
-    $qvars['dnh_ntc'] = 'error';
-    $qvars['dnh_ntm'] = urlencode( join( ', ', $error_message ) );
+  if(strlen($error_message) > 0) {
+    // Redirect met foutbericht voorbereiden
+    $qvars = array( 'page' => 'dnh_leden', 
+      'dnh_ntc' => 'error',
+      'dnh_ntm' => urlencode( $error_message )
+    );
   } else {
     global $wpdb; //This is used only if making any database queries
-    $updates = $wpdb->replace('DNH_lid', $data);
-    if ($updates === FALSE) {
-      $qvars['dnh_ntc'] = 'error';
-      $qvars['dnh_ntm'] = urlencode( __( 'Could not execute query: ' ) . $wpdb->last_error );
-    }
+    $updates = $wpdb->replace('lid', $data);
     // Redirect voorbereiden
-    $qvars['dnh_ntc'] = 'updated';
-    $qvars['dnh_ntm'] = urlencode( "Handeling succesvol. $updates rijen bijgewerkt/aangemaakt." );
+    $qvars = array( 'page' => 'dnh_leden', 
+      'dnh_ntc' => 'updated',
+      'dnh_ntm' => urlencode( 'lid is succesvol aangemaakt/bijgewerkt' ) );
   }
   wp_redirect( add_query_arg( $qvars, admin_url( 'admin.php' ) ) );
   exit;

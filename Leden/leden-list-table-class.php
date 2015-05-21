@@ -41,7 +41,7 @@ class DNHleden_List_Table extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-            'singular'  => 'tarief',    //singular name of the listed records
+            'singular'  => 'lid',    //singular name of the listed records
             'plural'    => 'leden',  //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
@@ -82,6 +82,7 @@ class DNHleden_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'                   => '<input type="checkbox" />', //Render a checkbox instead of text
+            'user_ID'			   => 'ID',
             'naam'                 => 'Naam',
             'Adres'				   => 'Adres',
         );
@@ -127,7 +128,7 @@ class DNHleden_List_Table extends WP_List_Table {
         );
     }
 	
-	function column_naam($item) {
+	function column_user_ID($item) {
         //Build row actions
         $actions = array(
             'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->user_ID, __( 'Edit' ) ),
@@ -136,12 +137,16 @@ class DNHleden_List_Table extends WP_List_Table {
         
         //Return the title contents
         return sprintf('%1$s %2$s',
-            /*$1%s*/ $item->Naam,
+            /*$1%s*/ $item->user_ID,
             /*$2%s*/ $this->row_actions($actions)
         );
 	}
 	
-	function column_adres($item) {
+	function column_Naam($item) {
+		return $item->Naam;
+	}
+	
+	function column_Adres($item) {
 		return $item->Adres;
 	}
 	

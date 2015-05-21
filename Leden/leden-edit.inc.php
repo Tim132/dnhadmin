@@ -7,7 +7,7 @@ Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
 <div class="wrap">
-	<h2>Bewerk tarief</h2>
+	<h2>Bewerk lid </h2>
 	<!-- Our form is sending out data to admin-post.php. This is where you should send all your data.-->
 	<form method="post" action="admin-post.php"> 
 
@@ -29,6 +29,10 @@ Auteur: BugSlayer
 				<tr class="form-field form-required">
 					<th scope="row"><label for="Adres">Adres<span class="description">(verplicht)</span></label></th>
 					<td><input name="Adres" type="text" id="Adres" value="<?php echo $item->Adres ?>" aria-required="true"></td>
+				</tr>
+				<tr class="form-field form-required">
+					<th scope="row"><label for="user_ID">ID<span class="description">(verplicht)</span></label></th>
+					<td><input name="user_ID" type="text" id="user_ID" value="<?php echo $item->user_ID ?>" aria-required="true"></td>
 				</tr>
 				
 			</tbody>

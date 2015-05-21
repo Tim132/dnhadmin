@@ -31,8 +31,6 @@ Auteur: BugSlayer
 				<tr class="form-field form-required">
 					<th scope="row"><label for="Adres">Adres <span class="description">(verplicht)</span></label></th>
 					<td><input name="Adres" type="text" id="Adres" value="" aria-required="true"></td>
-				</tr>
-				
 			</tbody>
 		</table>
 
