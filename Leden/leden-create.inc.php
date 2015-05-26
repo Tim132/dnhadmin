@@ -29,6 +29,7 @@ Auteur: BugSlayer
 					<td><input name="id" type="text" id="id" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
+<<<<<<< HEAD
 					<th scope="row"><label for="naam">Naam <span class="description">(verplicht)</span></label></th>
 					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
 				</tr>
@@ -44,6 +45,10 @@ Auteur: BugSlayer
 					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
 					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
 				</tr>
+=======
+					<th scope="row"><label for="Adres">Adres <span class="description">(verplicht)</span></label></th>
+					<td><input name="Adres" type="text" id="Adres" value="" aria-required="true"></td>
+>>>>>>> origin/master
 			</tbody>
 		</table>
 

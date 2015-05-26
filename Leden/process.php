@@ -26,6 +26,7 @@ function dnh_process_lid() {
   // Ophalen en valideren van de data
   $error_message = "";
   $data = array();
+<<<<<<< HEAD
   if ( isset( $_POST['id'] ) )
   {
     $data['lidID'] = sanitize_text_field( $_POST['id'] );
@@ -61,6 +62,21 @@ function dnh_process_lid() {
   }
   
 
+=======
+  if ( isset( $_POST['Naam'] ) )
+  {
+    $data['Naam'] = sanitize_text_field( $_POST['Naam'] );
+  } else {
+    $error_message .= 'naam veld is niet meegestuurd';
+  }
+  if ( isset( $_POST['Adres'] ) )
+  {
+    $data['Adres'] = sanitize_text_field( $_POST['Adres'] );
+	} else {
+    $error_message .= 'Adres veld is niet meegestuurd';
+  }
+  
+>>>>>>> origin/master
   if(strlen($error_message) > 0) {
     // Redirect met foutbericht voorbereiden
     $qvars = array( 'page' => 'dnh_leden', 
