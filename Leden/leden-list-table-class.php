@@ -41,8 +41,8 @@ class DNHleden_List_Table extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-            'singular'  => 'tarief',    //singular name of the listed records
-            'plural'    => 'leden',  //plural name of the listed records
+            'singular'  => 'lid',     //singular name of the listed records
+            'plural'    => 'leden',    //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
         
@@ -57,7 +57,7 @@ class DNHleden_List_Table extends WP_List_Table {
 	 *************************************************************************************/
 	function get_data() {
         global $wpdb; //This is used only if making any database queries
-        return $wpdb->get_results("SELECT * FROM DNH_LID");
+        return $wpdb->get_results("SELECT * FROM LID");
 	}
 	
 	/********************* CONFIGUREREN VAN DE TABEL HEADER *******************************
@@ -81,9 +81,12 @@ class DNHleden_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_columns(){
         $columns = array(
-            'cb'                   => '<input type="checkbox" />', //Render a checkbox instead of text
-            'naam'                 => 'Naam',
-            'Adres'				   => 'Adres',
+            'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
+            'LidID'     => 'lid ID',
+            'Naam'    => 'Naam',
+            'Adres' => 'Adres',
+			'Telefoon'     => 'Telefoonnummer',
+            'Email'    => 'Email',
         );
         return $columns;
     }
@@ -104,17 +107,19 @@ class DNHleden_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
+            'LidID'     => array('LidID',true),     //true means it's already sorted
+            'Naam'    => array('naam',false)
         );
         return $sortable_columns;
     }
     
-	/********************* CELLEN RENDEREN ************************************************
-	 * 
-	 * De volgende methoden renderen de cellen van de verschillende kolommen. Voor elke 
+    /********************* CELLEN RENDEREN ************************************************
+     * 
+     * De volgende methoden renderen de cellen van de verschillende kolommen. Voor elke 
      * kolom moet een functie komen met de naam column_[slug] (Bij voorbeeld column_cb). 
      * De slugs definieer je in de functie get_columns() hierboven.
-	 * 
-	 *************************************************************************************/
+     * 
+     *************************************************************************************/
 	
 	/*
 	 * De checkbox links van de rij, waarmee je items kan selecteren
@@ -123,39 +128,50 @@ class DNHleden_List_Table extends WP_List_Table {
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
             /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-            /*$2%s*/ $item->user_ID             //The value of the checkbox should be the record's id
+            /*$2%s*/ $item->LidID                //The value of the checkbox should be the record's id
         );
     }
 	
-	function column_naam($item) {
+	function column_LidID($item) {
         //Build row actions
         $actions = array(
-            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->user_ID, __( 'Edit' ) ),
-            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_delete',$this->_args['singular'], $item->user_ID, __( 'Delete' ) ),
+            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->LidID, __( 'Edit' ) ),
+            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_leden_delete',$this->_args['singular'], $item->LidID, __( 'Delete' ) ),            
         );
         
         //Return the title contents
         return sprintf('%1$s %2$s',
-            /*$1%s*/ $item->Naam,
+            /*$1%s*/ $item->LidID,
             /*$2%s*/ $this->row_actions($actions)
         );
 	}
 	
-	function column_adres($item) {
-		return $item->Adres;
+	
+	function column_Naam($item) {
+		  return $item->Naam;
+        
+	}
+        
+  
+    function column_Adres($item) {
+        return $item->Adres;
+    }
+	function column_Telefoon($item) {
+		return $item->Telefoon;
 	}
 	
+	function column_Email($item) {
+		return $item->Email;
+	}
 	
-     
    /** ************************************************************************
- 	 * Functie die Wordpress aanroept als de functie voor een bepaalde kolom
-     * niet bestaat
+ 	 * Functie die aangeroepen wordt als PHP niet de goede functie kan vinden
     **************************************************************************/
     function column_default($item, $column_name){
         return 'ERROR: '.print_r($item,true); //Show the whole array for troubleshooting purposes
     }
     
-	  
+	
     /**************************************************************************
      * Optional. If you need to include bulk actions in your list table, this is
      * the place to define them. Bulk actions are an associative array in the format
@@ -213,7 +229,7 @@ class DNHleden_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = 10;
+        $per_page = 5;
         
         
         /**
@@ -282,8 +298,5 @@ class DNHleden_List_Table extends WP_List_Table {
     
     
 }
-
-
- 
 
 ?>

@@ -23,11 +23,20 @@ if ('delete'===$myListTable->current_action()) {
 	<h2>leden
 		<?php 
 		if ( current_user_can( 'manage_options' ) ) 
-			echo ' <a href="' . admin_url('admin.php?page=dnh_leden_create') . '" class="add-new-h2">Nieuw lid</a>';
+			echo ' <a href="' . admin_url('admin.php?page=dnh_leden_create') . '" class="add-new-h2">Nieuwe lid</a>';
 		if ( ! empty( $_REQUEST['s'] ) )
 			printf( ' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() );
 		?>
 	</h2>
+	<?php 
+		if (isset($_GET['action'])) {
+			$action = $_GET['action'];
+			if ($action=='delete') {
+				$id = $_GET['item'];
+				echo '<div id="message" class="updated below-h2"><p>Item '. $id .' verwijderd.</p></div>';
+			} 
+		}
+	?>
 
     <!-- Forms are NOT created automatically, so you need to wrap the table in one to use features like bulk actions -->
     <form id="<?php echo $items ?>-filter" method="get">
@@ -39,6 +48,7 @@ if ('delete'===$myListTable->current_action()) {
     </form>
     
 </div>
+
 <?php 
 } //else 
 ?>

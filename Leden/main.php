@@ -6,6 +6,7 @@ Doel  : Hoofd bestand voor de leden, combineert alle functionaliteit voor het to
         leden
 Auteur: BugSlayer
 *******************************************************************************************************/
+
 // Include het script dat wijzigingen op de database verwerkt.
 require_once('process.php');
 
@@ -22,10 +23,10 @@ function dnh_leden_on_admin_menu() {
     * 5: slug van deze page
     * 6: PHP functie die wordt aangeroepen als de gebruiker de page oproept.
     */
-	add_submenu_page( 'dnh_menu', 'Beheren Leden'  , 'Leden'      , 'manage_options', 'dnh_leden'       , 'dnh_leden_list'   );
-	add_submenu_page( null      , 'Nieuw Lid'      , 'Nieuw'      , 'manage_options', 'dnh_leden_create', 'dnh_leden_create' );
-	add_submenu_page( null      , 'Lid Bewerken'   , 'Bewerken'   , 'manage_options', 'dnh_leden_edit'  , 'dnh_leden_edit'   );
-    add_submenu_page( null      , 'Lid Verwijderen', 'Verwijderen', 'manage_options', 'dnh_leden_delete', 'dnh_leden_delete' );
+	add_submenu_page( 'dnh_menu', 'Beheren leden'  , 'leden'      , 'manage_options', 'dnh_leden'        , 'dnh_leden_list'   );
+	add_submenu_page( null      , 'Nieuwe lid'     , 'Nieuw'      , 'manage_options', 'dnh_leden_create' , 'dnh_leden_create' );
+	add_submenu_page( null      , 'lid Bewerken'   , 'Bewerken'   , 'manage_options', 'dnh_leden_edit'   , 'dnh_leden_edit'   );
+    add_submenu_page( null      , 'lid Verwijderen', 'Verwijderen', 'manage_options', 'dnh_leden_delete' , 'dnh_leden_delete' );
 
 }
 
@@ -37,6 +38,7 @@ function dnh_leden_list() {
   if ( !current_user_can( 'manage_options' ) )  {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
   }
+  
   if(!class_exists('DNHleden_List_Table')){
       require_once( 'leden-list-table-class.php' );
   }
@@ -48,10 +50,10 @@ function dnh_leden_list() {
 }
 
 function dnh_leden_create() {
-  // Beperk toegang
-  if ( !current_user_can( 'manage_options' ) )  {
-    wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-  }
+   // Beperk toegang
+   if ( !current_user_can( 'manage_options' ) )  {
+      wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+   }
 	include( 'leden-create.inc.php' );
 }
 
@@ -64,9 +66,9 @@ function dnh_leden_edit() {
       wp_die( __( 'You do not sent sufficient data to use this page.' ) );
    }
    
-   $lid = sanitize_text_field( $_GET['lid'] );
+   $id = sanitize_text_field( $_GET['lid'] );
    global $wpdb;
-   $item = $wpdb->get_row("SELECT * FROM DNH_TARIEF WHERE Jaar = $lid");
+   $item = $wpdb->get_row("SELECT * FROM lid WHERE LidID = $id");
 
 	include( 'leden-edit.inc.php' );
 }

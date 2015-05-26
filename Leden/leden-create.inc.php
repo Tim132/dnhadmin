@@ -1,8 +1,8 @@
 <?php
 /*******************************************************************************************************
 Plugin: DNHAdmin
-Script: leden-create.inc.php
-Doel  : "Template" voor het toevoegen van een nieuw lid
+Script: liden-create.inc.php
+Doel  : "Template" voor het toevoegen van een nieuwe lid
 Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
@@ -25,17 +25,28 @@ Auteur: BugSlayer
 		<table class="form-table">
 			<tbody>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="Naam">Naam <span class="description">(verplicht)</span></label></th>
-					<td><input name="Naam" type="text" id="Naam" value="" aria-required="true"></td>
+					<th scope="row"><label for="id">lidID <span class="description">(verplicht)</span></label></th>
+					<td><input name="id" type="text" id="id" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="Adres">Adres <span class="description">(verplicht)</span></label></th>
-					<td><input name="Adres" type="text" id="Adres" value="" aria-required="true"></td>
+					<th scope="row"><label for="naam">Naam <span class="description">(verplicht)</span></label></th>
+					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
 				</tr>
-				
+				<tr class="form-field">
+					<th scope="row"><label for="adres">Adres </label></th>
+					<td><input name="adres" type="text" id="adres" value="" aria-required="false"></td>
+				</tr>
+				<tr class="form-field form-required">
+					<th scope="row"><label for="telefoon">Telefoon <span class="description">(verplicht)</span></label></th>
+					<td><input name="telefoon" type="text" id="telefoon" value="" aria-required="true"></td>
+				</tr>
+				<tr class="form-field form-required">
+					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
+					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
+				</tr>
 			</tbody>
 		</table>
 
-		<input type="submit" value="Nieuw lid toevoegen" class="button button-primary"/>
+		<input type="submit" value="Nieuwe lid toevoegen" class="button button-primary"/>
 	</form>
 </div>
