@@ -33,7 +33,7 @@ Auteur: BugSlayer
 					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field">
-					<th scope="row"><label for="adres">Adres </label></th>
+					<th scope="row"><label for="adres">Adres <span class="description">(verplicht)</span></label></th>
 					<td><input name="adres" type="text" id="adres" value="" aria-required="false"></td>
 				</tr>
 				<tr class="form-field form-required">

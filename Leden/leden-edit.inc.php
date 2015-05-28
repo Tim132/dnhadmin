@@ -5,6 +5,7 @@ Script: rubrieken-edit.inc.php
 Doel  : "Template" voor het bewerken van een bestaande Rubiek
 Auteur: BugSlayer
 *******************************************************************************************************/
+
 ?>
 <div class="wrap">
 	<h2>Bewerk lid </h2>
@@ -24,28 +25,28 @@ Auteur: BugSlayer
 			<tbody>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="id">lidID <span class="description">(verplicht)</span></label></th>
-					<td><input name="id" type="text" id="id" value="" aria-required="true"></td>
+					<td><input name="id" type="text" id="id" value="<?php echo $item->lidID ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="naam">Naam <span class="description">(verplicht)</span></label></th>
-					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
+					<td><input name="naam" type="text" id="naam" value="<?php echo $item->Naam ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field">
-					<th scope="row"><label for="adres">Adres </label></th>
-					<td><input name="adres" type="text" id="adres" value="" aria-required="false"></td>
+					<th scope="row"><label for="adres">Adres <span class="description">(verplicht)</span></label></th>
+					<td><input name="adres" type="text" id="adres" value="<?php echo $item->Adres ?>" aria-required="false"></td>
 				</tr>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="telefoon">Telefoon <span class="description">(verplicht)</span></label></th>
-					<td><input name="telefoon" type="text" id="telefoon" value="" aria-required="true"></td>
+					<td><input name="telefoon" type="text" id="telefoon" value="<?php echo $item->Telefoon ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
-					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
+					<td><input name="email" type="text" id="email" value="<?php echo $item->Email ?>" aria-required="true"></td>
 				</tr>
 
 			</tbody>
 		</table>
 
-		<input type="submit" value="Rubriek bijwerken" class="button button-primary"/>
+		<input type="submit" value="lid bijwerken" class="button button-primary"/>
 	</form>
 </div>
