@@ -68,7 +68,7 @@ function dnh_leden_edit() {
    
    $id = sanitize_text_field( $_GET['lid'] );
    global $wpdb;
-   $item = $wpdb->get_row("SELECT * FROM lid WHERE LidID = $id");
+   $item = $wpdb->get_row("SELECT * FROM dnh_leden WHERE LidID = $id");
 
 	include( 'leden-edit.inc.php' );
 }

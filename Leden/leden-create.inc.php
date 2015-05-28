@@ -29,7 +29,6 @@ Auteur: BugSlayer
 					<td><input name="id" type="text" id="id" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
-<<<<<<< HEAD
 					<th scope="row"><label for="naam">Naam <span class="description">(verplicht)</span></label></th>
 					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
 				</tr>
@@ -38,17 +37,13 @@ Auteur: BugSlayer
 					<td><input name="adres" type="text" id="adres" value="" aria-required="false"></td>
 				</tr>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="telefoon">Telefoon <span class="description">(verplicht)</span></label></th>
+					<th scope="row"><label for="telefoon">Telefoonnummer <span class="description">(verplicht)</span></label></th>
 					<td><input name="telefoon" type="text" id="telefoon" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
 					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
 				</tr>
-=======
-					<th scope="row"><label for="Adres">Adres <span class="description">(verplicht)</span></label></th>
-					<td><input name="Adres" type="text" id="Adres" value="" aria-required="true"></td>
->>>>>>> origin/master
 			</tbody>
 		</table>
 

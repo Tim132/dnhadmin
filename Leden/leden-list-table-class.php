@@ -41,13 +41,8 @@ class DNHleden_List_Table extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-<<<<<<< HEAD
             'singular'  => 'lid',     //singular name of the listed records
             'plural'    => 'leden',    //plural name of the listed records
-=======
-            'singular'  => 'lid',    //singular name of the listed records
-            'plural'    => 'leden',  //plural name of the listed records
->>>>>>> origin/master
             'ajax'      => false        //does this table support ajax?
         ) );
         
@@ -62,7 +57,7 @@ class DNHleden_List_Table extends WP_List_Table {
 	 *************************************************************************************/
 	function get_data() {
         global $wpdb; //This is used only if making any database queries
-        return $wpdb->get_results("SELECT * FROM LID");
+        return $wpdb->get_results("SELECT * FROM dnh_leden");
 	}
 	
 	/********************* CONFIGUREREN VAN DE TABEL HEADER *******************************
@@ -86,19 +81,12 @@ class DNHleden_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_columns(){
         $columns = array(
-<<<<<<< HEAD
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'LidID'     => 'lid ID',
-            'Naam'    => 'Naam',
-            'Adres' => 'Adres',
-			'Telefoon'     => 'Telefoonnummer',
-            'Email'    => 'Email',
-=======
-            'cb'                   => '<input type="checkbox" />', //Render a checkbox instead of text
-            'user_ID'			   => 'ID',
-            'naam'                 => 'Naam',
-            'Adres'				   => 'Adres',
->>>>>>> origin/master
+        	'lidID'		=> 'ID',
+            'Naam'    	=> 'Naam',
+            'Adres' 	=> 'Adres',
+			'Telefoon'  => 'Telefoonnummer',
+            'Email'    	=> 'Email',
         );
         return $columns;
     }
@@ -144,11 +132,7 @@ class DNHleden_List_Table extends WP_List_Table {
         );
     }
 	
-<<<<<<< HEAD
-	function column_LidID($item) {
-=======
-	function column_user_ID($item) {
->>>>>>> origin/master
+	function column_lidID($item) {
         //Build row actions
         $actions = array(
             'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>'  ,'dnh_leden_edit'  ,$this->_args['singular'], $item->LidID, __( 'Edit' ) ),
@@ -157,16 +141,10 @@ class DNHleden_List_Table extends WP_List_Table {
         
         //Return the title contents
         return sprintf('%1$s %2$s',
-<<<<<<< HEAD
-            /*$1%s*/ $item->LidID,
-=======
-            /*$1%s*/ $item->user_ID,
->>>>>>> origin/master
+            /*$1%s*/ $item->lidID,
             /*$2%s*/ $this->row_actions($actions)
         );
 	}
-	
-<<<<<<< HEAD
 	
 	function column_Naam($item) {
 		  return $item->Naam;
@@ -179,14 +157,6 @@ class DNHleden_List_Table extends WP_List_Table {
     }
 	function column_Telefoon($item) {
 		return $item->Telefoon;
-=======
-	function column_Naam($item) {
-		return $item->Naam;
-	}
-	
-	function column_Adres($item) {
-		return $item->Adres;
->>>>>>> origin/master
 	}
 	
 	function column_Email($item) {

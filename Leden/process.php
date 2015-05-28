@@ -26,7 +26,6 @@ function dnh_process_lid() {
   // Ophalen en valideren van de data
   $error_message = "";
   $data = array();
-<<<<<<< HEAD
   if ( isset( $_POST['id'] ) )
   {
     $data['lidID'] = sanitize_text_field( $_POST['id'] );
@@ -61,22 +60,6 @@ function dnh_process_lid() {
     $error_message .= 'email veld is niet meegestuurd';
   }
   
-
-=======
-  if ( isset( $_POST['Naam'] ) )
-  {
-    $data['Naam'] = sanitize_text_field( $_POST['Naam'] );
-  } else {
-    $error_message .= 'naam veld is niet meegestuurd';
-  }
-  if ( isset( $_POST['Adres'] ) )
-  {
-    $data['Adres'] = sanitize_text_field( $_POST['Adres'] );
-	} else {
-    $error_message .= 'Adres veld is niet meegestuurd';
-  }
-  
->>>>>>> origin/master
   if(strlen($error_message) > 0) {
     // Redirect met foutbericht voorbereiden
     $qvars = array( 'page' => 'dnh_leden', 
@@ -85,7 +68,7 @@ function dnh_process_lid() {
     );
   } else {
     global $wpdb; //This is used only if making any database queries
-    $updates = $wpdb->replace('lid', $data);
+    $updates = $wpdb->replace('dnh_leden', $data);
     // Redirect voorbereiden
     $qvars = array( 'page' => 'dnh_leden', 
       'dnh_ntc' => 'updated',

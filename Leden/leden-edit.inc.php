@@ -7,11 +7,7 @@ Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
 <div class="wrap">
-<<<<<<< HEAD
-	<h2>Bewerk rubriek</h2>
-=======
 	<h2>Bewerk lid </h2>
->>>>>>> origin/master
 	<!-- Our form is sending out data to admin-post.php. This is where you should send all your data.-->
 	<form method="post" action="admin-post.php"> 
 
@@ -46,18 +42,7 @@ Auteur: BugSlayer
 					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
 					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
 				</tr>
-				<tr class="form-field form-required">
-					<th scope="row"><label for="contributie">Contributie <span class="description">(verplicht)</span></label></th>
-					<td><input name="contributie" type="text" id="contributie" value="" aria-required="true"></td>
-				</tr>
-<<<<<<< HEAD
-=======
-				<tr class="form-field form-required">
-					<th scope="row"><label for="user_ID">ID<span class="description">(verplicht)</span></label></th>
-					<td><input name="user_ID" type="text" id="user_ID" value="<?php echo $item->user_ID ?>" aria-required="true"></td>
-				</tr>
-				
->>>>>>> origin/master
+
 			</tbody>
 		</table>
 
