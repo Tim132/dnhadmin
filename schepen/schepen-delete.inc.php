@@ -23,12 +23,13 @@ if (isset($_GET['lid'])) {
 // Lid-informatie ophalen
 global $wpdb;
 $ids = join(',',$leden);  
-$myrows = $wpdb->get_results("SELECT * FROM lid WHERE lidID IN ($ids)");
+$myrows = $wpdb->get_results("SELECT * FROM dnh_lid WHERE LidID IN ($LidID)");
 
-
+// TODO aantal gekoppelde transacties ophalen, maar ik heb nog geen transactie tabel :( / en ik zou ook niet weten hoe om dat te doen :(((
+$trans_count = 352;
 
 // Overige rubrieken ophalen om de <select> op te kunnen bouwen 
-$options = $wpdb->get_results("SELECT * FROM lid WHERE lidID NOT IN ($ids) ORDER BY lidID");
+$options = $wpdb->get_results("SELECT * FROM dnh_lid WHERE LidID NOT IN ($LidID) ORDER BY LidID");
 
 ?>
 
@@ -48,9 +49,9 @@ $options = $wpdb->get_results("SELECT * FROM lid WHERE lidID NOT IN ($ids) ORDER
 		<input type="hidden" name="action" value="dnh_delete_Leden" />
 
 		<?php
-			//Hier hidden array-fields maken voor alle geselecteerde leden
+			//Hier hidden array-fields maken voor alle geselecteerde rubrieken
 			foreach($leden as $lid) {
-				printf('<input type="hidden" name="lid[]"  value="%s" />', $lid);
+				printf('<input type="hidden" name="lid[]" value="%s" />', $lid);
 			}
 		?>
 

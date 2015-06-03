@@ -1,7 +1,7 @@
 <?php
 /*******************************************************************************************************
 Plugin: DNHAdmin
-Script: leden-list-table-class.inc.php
+Script: schepen-list-table-class.inc.php
 Doel  : Klasse die de lijst met leden kan renderen
 Auteur: BugSlayer
 *******************************************************************************************************/
@@ -29,7 +29,7 @@ if(!class_exists('WP_List_Table')){
  * 
  * Our theme for this list table is going to be movies.
  */
-class DNHleden_List_Table extends WP_List_Table {
+class DNHSchepen_List_Table extends WP_List_Table {
     
     
     /** ************************************************************************
@@ -41,8 +41,8 @@ class DNHleden_List_Table extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-            'singular'  => 'lid',     //singular name of the listed records
-            'plural'    => 'leden',    //plural name of the listed records
+            'singular'  => 'schip',     //singular name of the listed records
+            'plural'    => 'schepen',    //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
         
@@ -55,10 +55,21 @@ class DNHleden_List_Table extends WP_List_Table {
 	 * 
 	 * @return array An associative array containing row data
 	 *************************************************************************************/
+	
 	function get_data() {
-        global $wpdb; //This is used only if making any database queries
-        return $wpdb->get_results("SELECT * FROM dnh_leden");
+		if( isset ($_GET['lid'] )) {
+			$lid = $_GET['lid'];
+			
+				global $wpdb; //This is used only if making any database queries
+				return $wpdb->get_results("SELECT * FROM dnh_schepen WHERE lidID = $lid");
+		}
+		else {
+				global $wpdb; //This is used only if making any database queries
+				return $wpdb->get_results("SELECT * FROM dnh_schepen");
+		}
+  
 	}
+	
 	
 	/********************* CONFIGUREREN VAN DE TABEL HEADER *******************************
 	 * 
@@ -82,10 +93,9 @@ class DNHleden_List_Table extends WP_List_Table {
     function get_columns(){
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'Naam'    	=> 'Naam',
-            'Adres' 	=> 'Adres',
-			'Telefoon'  => 'Telefoonnummer',
-            'Email'    	=> 'Email',
+            'schipID'   => 'ID',
+            'Naam'      => 'Naam',
+			'Lengte'    => 'Lengte',
         );
         return $columns;
     }
@@ -106,7 +116,8 @@ class DNHleden_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'Naam'    	=> array('naam',TRUE)
+            'SchipID'     => array('SchipID',true),     //true means it's already sorted
+            'Type'    => array('Type',false)
         );
         return $sortable_columns;
     }
@@ -125,37 +136,41 @@ class DNHleden_List_Table extends WP_List_Table {
     function column_cb($item){
         return sprintf(
             '<input type="checkbox" name="%1$s[]" value="%2$s" />',
-            /*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-            /*$2%s*/ $item->lidID                //The value of the checkbox should be the record's id
+            /*$1%s*/ $this->_args['singular'],   //Let's simply repurpose the table's singular label ("movie")
+            /*$2%s*/ $item->LidID                //The value of the checkbox should be the record's id
         );
     }
 	
-	function column_Naam($item) {
+	function column_SchipID($item) {
         //Build row actions
         $actions = array(
-            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_leden_edit'  ,$this->_args['singular'], $item->lidID, __( 'Edit' ) ),
-            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_leden_delete',$this->_args['singular'], $item->lidID, __( 'Delete' ) ),
-            'Schepen'   => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen'     ,$this->_args['singular'], $item->lidID, __( 'Schepen' ) ),
+            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_edit'  ,$this->_args['singular'], $item->LidID, __( 'Edit' ) ),
+            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_delete',$this->_args['singular'], $item->LidID, __( 'Delete' ) ),
+			
+            
+            
         );
         
         //Return the title contents
         return sprintf('%1$s %2$s',
-            /*$1%s*/ $item->Naam,
+            /*$1%s*/ $item->schipID,
             /*$2%s*/ $this->row_actions($actions)
         );
 	}
+	
+	
+	function column_Naam($item) {
+		  return $item->Naam;
+	}
+        
   
-    function column_Adres($item) {
-        return $item->Adres;
+    function column_Lengte($item) {
+        return $item->Lengte;
     }
-	function column_Telefoon($item) {
-		return $item->Telefoon;
-	}
+
 	
-	function column_Email($item) {
-		return $item->Email;
-	}
 	
+    
    /** ************************************************************************
  	 * Functie die aangeroepen wordt als PHP niet de goede functie kan vinden
     **************************************************************************/

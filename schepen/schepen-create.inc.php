@@ -1,14 +1,14 @@
 <?php
 /*******************************************************************************************************
 Plugin: DNHAdmin
-Script: liden-create.inc.php
+Script: schepen-create.inc.php
 Doel  : "Template" voor het toevoegen van een nieuwe lid
 Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
 <div class="wrap">
-	<h2>Nieuw lid</h2>
-	<p>Nieuw lid aanmaken</p>
+	<h2>Nieuwe schip</h2>
+	<p>Nieuwe lid aanmaken waarop transacties kunnen worden geboekt.</p>
 	<!-- Our form is sending out data to admin-post.php. This is where you should send all your data.-->
 	<form method="post" action="admin-post.php"> 
 
@@ -29,16 +29,8 @@ Auteur: BugSlayer
 					<td><input name="naam" type="text" id="naam" value="" aria-required="true"></td>
 				</tr>
 				<tr class="form-field">
-					<th scope="row"><label for="adres">Adres <span class="description">(verplicht)</span></label></th>
-					<td><input name="adres" type="text" id="adres" value="" aria-required="false"></td>
-				</tr>
-				<tr class="form-field form-required">
-					<th scope="row"><label for="telefoon">Telefoonnummer <span class="description">(verplicht)</span></label></th>
-					<td><input name="telefoon" type="text" id="telefoon" value="" aria-required="true"></td>
-				</tr>
-				<tr class="form-field form-required">
-					<th scope="row"><label for="email">Email <span class="description">(verplicht)</span></label></th>
-					<td><input name="email" type="text" id="email" value="" aria-required="true"></td>
+					<th scope="row"><label for="adres">Lengte <span class="description">(verplicht)</span></label></th>
+					<td><input name="adres" type="number" id="Lengte" value="" aria-required="false"></td>
 				</tr>
 			</tbody>
 		</table>

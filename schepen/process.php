@@ -1,20 +1,20 @@
 <?php
 /*******************************************************************************************************
 Plugin: DNHAdmin
-Script: leden/process.php
-Doel  : Alles voor het verwerken van wijzigingen van leden
+Script: schepen/process.php
+Doel  : Alles voor het verwerken van wijzigingen van schepen
 Auteur: BugSlayer
 *******************************************************************************************************/
 
 /**************************************************************** 
-TOEVOEGEN/BIJWERKEN VAN EEN lid
-Dit wordt aangeroepen zowel bij het aanmaken van een nieuwe lid
-als het bijwerken van een bestaande lid.
+TOEVOEGEN/BIJWERKEN VAN EEN schip
+Dit wordt aangeroepen zowel bij het aanmaken van een nieuwe schip
+als het bijwerken van een bestaande schip.
 *****************************************************************/
 // De Action Hook
-add_action( 'admin_post_dnh_save_lid', 'dnh_process_lid' );
+add_action( 'admin_post_dnh_save_schip', 'dnh_process_schip' );
 // De functie
-function dnh_process_lid() {
+function dnh_process_schip() {
   // Controleer de rechten
   if ( !current_user_can( 'manage_options' ) )
   {
@@ -23,7 +23,7 @@ function dnh_process_lid() {
   // Check that nonce field
   check_admin_referer( 'dnh_verify' );
 
-  // Ophalen en valideren van de data
+  // Ophalen en vaschiperen van de data
   $error_message = "";
   $data = array();
   if ( isset( $_POST['naam'] ) )
@@ -32,53 +32,42 @@ function dnh_process_lid() {
   } else {
     $error_message .= 'testnaam veld is niet meegestuurd';
   }
-  if ( isset( $_POST['adres'] ) )
+  if ( isset( $_POST['lengte'] ) )
   {
     $data['Adres'] = sanitize_text_field( $_POST['adres'] );
 	} else {
     $error_message .= 'adres veld is niet meegestuurd';
   }
-  if ( isset( $_POST['telefoon'] ) )
-  {
-    $data['Telefoon'] = sanitize_text_field( $_POST['telefoon'] );
-	} else {
-    $error_message .= 'telefoon veld is niet meegestuurd';
-  }
-  if ( isset( $_POST['email'] ) )
-  {
-    $data['Email'] = sanitize_text_field( $_POST['email'] );
-	} else {
-    $error_message .= 'email veld is niet meegestuurd';
-  }
   
+
   if(strlen($error_message) > 0) {
     // Redirect met foutbericht voorbereiden
-    $qvars = array( 'page' => 'dnh_leden', 
+    $qvars = array( 'page' => 'dnh_schepen', 
       'dnh_ntc' => 'error',
       'dnh_ntm' => urlencode( $error_message )
     );
   } else {
     global $wpdb; //This is used only if making any database queries
-    $updates = $wpdb->replace('dnh_leden', $data);
+    $updates = $wpdb->replace('schip', $data);
     // Redirect voorbereiden
-    $qvars = array( 'page' => 'dnh_leden', 
+    $qvars = array( 'page' => 'dnh_schepen', 
       'dnh_ntc' => 'updated',
-      'dnh_ntm' => urlencode( 'lid is succesvol aangemaakt/bijgewerkt' ) );
+      'dnh_ntm' => urlencode( 'schip is succesvol aangemaakt/bijgewerkt' ) );
   }
   wp_redirect( add_query_arg( $qvars, admin_url( 'admin.php' ) ) );
   exit;
 }
 
 /**************************************************************** 
-VERWIJDEREN VAN EEN lid, EN BIJWERKEN VAN DAARAAN GEKOPPELDE 
+VERWIJDEREN VAN EEN schip, EN BIJWERKEN VAN DAARAAN GEKOPPELDE 
 TRANSACTIES
-Dit wordt aangeroepen als één of meer leden moeten worden
+Dit wordt aangeroepen als één of meer schepen moeten worden
 verwijderd.
 *****************************************************************/
 // De Action Hook
-add_action( 'admin_post_dnh_delete_leden', 'dnh_process_delete_leden' );
+add_action( 'admin_post_dnh_delete_schepen', 'dnh_process_delete_schepen' );
 // De functie
-function dnh_process_delete_leden() {
+function dnh_process_delete_schepen() {
   // Controleer de rechten
   if ( !current_user_can( 'manage_options' ) )
   {
@@ -89,27 +78,27 @@ function dnh_process_delete_leden() {
 
   // TODO nog te implementeren
 
-  // ophalen leden, keuze en eventueel nieuwe lid
+  // ophalen schepen, keuze en eventueel nieuwe schip
   $error_message = "";
-  // Ophalen en valideren van de data
-  // Alle gemarkeerde leden in een array stoppen
-  $leden = Array();
-  if (isset($_POST['lid'])) {
-    $value = $_POST['lid'];
+  // Ophalen en vaschiperen van de data
+  // Alle gemarkeerde schepen in een array stoppen
+  $schepen = Array();
+  if (isset($_POST['schip'])) {
+    $value = $_POST['schip'];
     if (is_array($value)) {
       foreach ($value as $val) {
-        $leden[] = sanitize_text_field($val);
+        $schepen[] = sanitize_text_field($val);
       }
     } else {
-      $leden[] = sanitize_text_field($value);
+      $schepen[] = sanitize_text_field($value);
     }
   } else {
-    $error_message .= 'Er zijn geen leden meegestuurd';
+    $error_message .= 'Er zijn geen schepen meegestuurd';
   }
 
-  foreach ($leden as $lid) {
-    if (!is_numeric($lid)) {
-      $error_message .= 'lid $lid is niet geldig';
+  foreach ($schepen as $schip) {
+    if (!is_numeric($schip)) {
+      $error_message .= 'schip $schip is niet geldig';
     }
   }
 
@@ -119,18 +108,18 @@ function dnh_process_delete_leden() {
   } else {
     $error_message .= 'Er is niet aangegeven wat er gedaan moet worden met de transacties';
   }
-  if ( isset( $_POST['nwe_lid'] ) )
+  if ( isset( $_POST['nwe_schip'] ) )
   {
-    $nwe_transactie = sanitize_text_field( $_POST['nwe_lid'] );
+    $nwe_transactie = sanitize_text_field( $_POST['nwe_schip'] );
   } else {
     if ($what_to_do_with_transactions==='rubr')
-      $error_message .= 'Er is geen nieuwe lid meegestuurd';
+      $error_message .= 'Er is geen nieuwe schip meegestuurd';
   }
 
 
   if(strlen($error_message) > 0) {
     // Redirect voorbereiden
-    $qvars = array( 'page' => 'dnh_leden', 
+    $qvars = array( 'page' => 'dnh_schepen', 
       'dnh_ntc' => 'error',
       'dnh_ntm' => urlencode( $error_message )
     );
@@ -138,14 +127,14 @@ function dnh_process_delete_leden() {
     global $wpdb; //This is used only if making any database queries
     // TODO aanpassen van de transacties, mbv SQL
 
-    // verwijderen leden
-    foreach ($leden as $lid) {
-      $wpdb->delete( 'dnh_leden', Array( 'ID' => $lid ) );
+    // verwijderen schepen
+    foreach ($schepen as $schip) {
+      $wpdb->delete( 'DNH_schip', Array( 'ID' => $schip ) );
     }
     // Redirect voorbereiden
-    $qvars = array( 'page' => 'dnh_leden', 
+    $qvars = array( 'page' => 'dnh_schepen', 
       'dnh_ntc' => 'updated',
-      'dnh_ntm' => urlencode( 'lid(en) succesvol verwijderd' ) 
+      'dnh_ntm' => urlencode( 'schip(en) succesvol verwijderd' ) 
      );
   }
   //echo add_query_arg( $qvars, admin_url( 'admin.php' ));
