@@ -11,6 +11,11 @@ if ( !current_user_can( 'manage_options' ) )  {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 
+//kijk of er een lid idee is meegestuurd, zo ja word deze opgeslagen in $lid		
+if ( isset ($_GET['lid'] )) {
+	$lid = $_GET['lid'];
+}
+
 // Bepaal nu wat te renderen (bulk acties leidt Wordpress automatisch hier naartoe)
 if ('delete'===$myListTable->current_action()) {
 	// Laat een pagina zien die de bulk-action 'delete' afhandelt
@@ -23,7 +28,7 @@ if ('delete'===$myListTable->current_action()) {
 	<h2>schepen
 		<?php 
 		if ( current_user_can( 'manage_options' ) ) 
-			echo ' <a href="' . admin_url('admin.php?page=dnh_schepen_create') . '" class="add-new-h2">Nieuw schip</a>';
+			echo ' <a href="' . admin_url('admin.php?page=dnh_schepen_create') . '&lid=' . $lid . '" class="add-new-h2">Nieuw schip</a>';
 		if ( ! empty( $_REQUEST['s'] ) )
 			printf( ' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() );
 		?>

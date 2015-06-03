@@ -26,17 +26,21 @@ function dnh_process_schip() {
   // Ophalen en vaschiperen van de data
   $error_message = "";
   $data = array();
-  if ( isset( $_POST['naam'] ) )
+  if ( isset( $_POST['Naam'] ) )
   {
-    $data['Naam'] = sanitize_text_field( $_POST['naam'] );
+    $data['Naam'] = sanitize_text_field( $_POST['Naam'] );
   } else {
-    $error_message .= 'testnaam veld is niet meegestuurd';
+    $error_message .= 'naam veld is niet meegestuurd';
   }
-  if ( isset( $_POST['lengte'] ) )
+  if ( isset( $_POST['Lengte'] ) )
   {
-    $data['Adres'] = sanitize_text_field( $_POST['adres'] );
+    $data['Lengte'] = sanitize_text_field( $_POST['Lengte'] );
 	} else {
-    $error_message .= 'adres veld is niet meegestuurd';
+    $error_message .= 'Lengte veld is niet meegestuurd';
+  }
+	if ( isset( $_POST['lidID'] ) )
+  {
+    $data['lidID'] = sanitize_text_field( $_POST['lidID'] );
   }
   
 
@@ -48,7 +52,7 @@ function dnh_process_schip() {
     );
   } else {
     global $wpdb; //This is used only if making any database queries
-    $updates = $wpdb->replace('schip', $data);
+    $updates = $wpdb->replace('dnh_schepen', $data);
     // Redirect voorbereiden
     $qvars = array( 'page' => 'dnh_schepen', 
       'dnh_ntc' => 'updated',

@@ -7,7 +7,7 @@ Auteur: BugSlayer
 *******************************************************************************************************/
 ?>
 <div class="wrap">
-	<h2>Bewerk rubriek</h2>
+	<h2>Bewerk schip</h2>
 	<!-- Our form is sending out data to admin-post.php. This is where you should send all your data.-->
 	<form method="post" action="admin-post.php"> 
 
@@ -23,16 +23,16 @@ Auteur: BugSlayer
 		<table class="form-table">
 			<tbody>
 				<tr class="form-field form-required">
-					<th scope="row"><label for="id">Code <span class="description">(verplicht)</span></label></th>
-					<td><input name="id" type="text" id="id" value="<?php echo $item->schipID ?>" aria-required="true"></td>
+					<th scope="row"><label for="schipID">eigenaar ID <span class="description">(verplicht)</span></label></th>
+					<td><input name="schipID" type="number" id="schipID" value="<?php echo $item->schipID ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field form-required">
 					<th scope="row"><label for="naam">Naam <span class="description">(verplicht)</span></label></th>
 					<td><input name="naam" type="text" id="naam" value="<?php echo $item->Naam ?>" aria-required="true"></td>
 				</tr>
 				<tr class="form-field">
-					<th scope="row"><label for="omschrijving">Lengte <span class="description">(verplicht)</span></label></th>
-					<td><input name="omschrijving" type="text" id="omschrijving" value="<?php echo $item->Lengte ?>" aria-required="false"></td>
+					<th scope="row"><label for="lengte">Lengte <span class="description">(verplicht)</span></label></th>
+					<td><input name="lengte" type="text" id="lengte" value="<?php echo $item->Lengte ?>" aria-required="false"></td>
 				</tr>
 			</tbody>
 		</table>

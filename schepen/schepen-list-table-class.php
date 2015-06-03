@@ -144,8 +144,8 @@ class DNHSchepen_List_Table extends WP_List_Table {
 	function column_SchipID($item) {
         //Build row actions
         $actions = array(
-            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_edit'  ,$this->_args['singular'], $item->LidID, __( 'Edit' ) ),
-            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_delete',$this->_args['singular'], $item->LidID, __( 'Delete' ) ),
+            'edit'      => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_edit'  ,$this->_args['singular'], $item->schipID, __( 'Edit' ) ),
+            'delete'    => sprintf( '<a href="?page=%s&%s=%s">%s</a>','dnh_schepen_delete',$this->_args['singular'], $item->schipID, __( 'Delete' ) ),
 			
             
             
